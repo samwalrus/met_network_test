@@ -8,23 +8,21 @@
 </p><p> Other ideas include actual causation but not in a probablistic sense </p>
 
 <p> The process of abductive learning is based on background knowledge, abducible and observable predicates </p>
-<p> The purpose of the abduction process in this problem is to generate hypotheses about inhibition from the nuclear magnetic resonance (NMR) observations of meabolite concentrations.
-  The set of observables uses the predicate: <b> concentration(Metabolite, Level,Time). </b>
-  exoressing the fact that at some time TIME, a metabolite, Metabolite, a certain level of relative variation in concentration, LEVEL has been observed, in the simplist case is <i>up</i> or <i> down</i>
+<p> The purpose of the abduction process in this problem is to generate hypotheses about inhibition from observations of meabolite concentrations (Maybe from the nuclear magnetic resonance (NMR) tech).
+  The set of observables uses the predicate: <b> <code>concentration(Metabolite, Level,Time). </code></b>
+  exoressing the fact that at some time <code> Time</code>, a metabolite, <code>Metabolite</code>, a certain level of relative variation in concentration, <code>Level</code> has been observed, in the simplist case is <i>up</i> or <i> down</i>
   We assume one 'toxin' in this case not a toxin but a challenge.
   The abducible hypotheses are captured through a declaration of the abducible predicate:
-  <b> inhibited(ENZ, STATUS, MET1,MET2,T). </b> expressing the hypothesis that at the time T the reaction Met1 to MEt2 is inhibited by the 'toxin' through an adverse effect on the enzyme enz that normally catalyzes this reaction. Negation of faliue is needed for this other wise need a status var.
+  <b> <code>inhibited(ENZ, STATUS, MET1,MET2,T).</code> </b> expressing the hypothesis that at the time T the reaction Met1 to MEt2 is inhibited by the 'toxin' through an adverse effect on the enzyme enz that normally catalyzes this reaction. Negation of faliue is needed for this other wise need a status var.
 The set of abducibles containts the only predicate inhibited and completing this would complete the given model.
 The experimental observations of increased of reduced metabolite concentration will be accounted for in terms of hypotheses on the underlying and non-observable inhibitory effect of the 'toxin' represented by this abducible predicate.
 Background predicates include ground facts, rules and integreity constraints. </p>
 Ground facts such as:
-<b> reactionnode(Met1, Enzymes, Met2). </b> Describe the topology of the network of the metabolic pathway. A set of metabolites can be on each side of the reaction and set of enzymes. 
+<b> <code>reactionnode(Met1, Enzymes, Met2).</code> </b> Describe the topology of the network of the metabolic pathway. A set of metabolites can be on each side of the reaction and set of enzymes. 
 In general a reaction could be reversable.
 
 A simple high level model of inhibition effects: 
-<code>
 
-</code>
 </div>
 
 <div class="nb-cell program" data-background="true" name="p1">
