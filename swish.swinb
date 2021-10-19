@@ -16,7 +16,21 @@
   <b> inhibited(ENZ, STATUS, MET1,MET2,T). </b> expressing the hypothesis that at the time T the reaction Met1 to MEt2 is inhibited by the 'toxin' through an adverse effect on the enzyme enz that normally catalyzes this reaction. Negation of faliue is needed for this other wise need a status var.
 The set of abducibles containts the only predicate inhibited and completing this would complete the given model.
 The experimental observations of increased of reduced metabolite concentration will be accounted for in terms of hypotheses on the underlying and non-observable inhibitory effect of the 'toxin' represented by this abducible predicate.
-Background predicates include ground facts, rules </p>
+Background predicates include ground facts, rules and integreity constraints. </p>
+Ground facts such as:
+<b> reactionnode(Met1, Enzymes, Met2). </b> Describe the topology of the network of the metabolic pathway. A set of metabolites can be on each side of the reaction and set of enzymes. 
+In general a reaction could be reversable.
+
+A simple high level model of inhibition effects: 
+
+concentration(X,down,T):-
+   reactionnode(X,Enz,Y),
+   inhibited(Enz,True,Y,X,T). 
+
+concentration(X,down,T):-
+   reactionnode(X,Enz,Y),
+   inhibited(Enz,false,Y,X,T),
+   concentration(Y,down,T).
 </div>
 
 <div class="nb-cell program" data-background="true" name="p1">
