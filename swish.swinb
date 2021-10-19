@@ -22,22 +22,41 @@ Ground facts such as:
 In general a reaction could be reversable.
 
 A simple high level model of inhibition effects: 
+<code>
 
-concentration(X,down,T):-
-   reactionnode(X,Enz,Y),
-   inhibited(Enz,True,Y,X,T). 
-
-concentration(X,down,T):-
-   reactionnode(X,Enz,Y),
-   inhibited(Enz,false,Y,X,T),
-   concentration(Y,down,T).
+</code>
 </div>
 
 <div class="nb-cell program" data-background="true" name="p1">
 :- use_module(library(scasp)).
 </div>
 
+<div class="nb-cell program" name="p3">
+concentration(X,down,T):-
+   reactionnode(X,Enz,Y), %X &lt;--Enz--Y
+   inhibited(Enz,true,Y,X,T). 
+
+concentration(X,down,T):-
+   reactionnode(X,Enz,Y), %X &lt;--Enz --Y
+   inhibited(Enz,false,Y,X,T),
+   concentration(Y,down,T).
+
+concentration(X,up,T):-
+   reactionnode(Y,Enz,X), % Y &lt;--Enz --X
+   inhibited(Enz,true,X,Y,T). 
+
+concentration(X,up,T):-
+   reactionnode(X,Enz,Y),  % Y &lt;--Enz --X
+   inhibited(Enz,false,Y,X,T),
+   concentration(Y,up,T).
+</div>
+
 <div class="nb-cell program" name="p2">
+false :- concentration(X,down,T), concentration(X,up,T).
+false :- inhibited(Enz,t,From,To,T),inhibited(Enz,f,From,To,T).
+false:- inhibited(Enz,t,From,To,T),inhibited(Enz,f,To,From,T).
+false :- inhibited(Enz,f,From,To,T),inhibited(Enz,f,To,From,T).
+false :- inhibited(Enz,t,From,To,T),inhibited(Enz,f,To,From,T).
 
 </div>
 
